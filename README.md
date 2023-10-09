@@ -34,7 +34,9 @@ Install Java
 sudo yum install java-1.8.0-openjdk
 ```  
 Check Java version  
-```java -version```
+```bash
+java -version
+```
 
 
 Start Zoo-keeper:
