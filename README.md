@@ -21,21 +21,30 @@ I have used different technologies such as Python, Amazon Web Services (AWS), Ap
 
 ## Kafka commands
 
-```wget https://downloads.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz```
-
-```tar -xvf kafka_2.12-3.3.1.tgz```
+```bash
+wget https://downloads.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
+```
+```bash
+tar -xvf kafka_2.12-3.3.1.tgz
+```
 
 Install Java
 -----------------------
-```sudo yum install java-1.8.0-openjdk```  
+```bash
+sudo yum install java-1.8.0-openjdk
+```  
 Check Java version  
 ```java -version```
 
 
 Start Zoo-keeper:
 -------------------------------
-```cd kafka_2.12-3.3.1```  
-```bin/zookeeper-server-start.sh config/zookeeper.properties```
+```bash
+cd kafka_2.12-3.3.1
+``` 
+```bash 
+bin/zookeeper-server-start.sh config/zookeeper.properties
+```
 
 Open another window to start kafka  
 But first ssh to to your ec2 machine as done above
@@ -45,9 +54,12 @@ Start Kafka-server:
 ----------------------------------------
 Duplicate the session & enter in a new console -
 
-```export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"```    
-```cd kafka_2.12-3.3.1```    
-```bin/kafka-server-start.sh config/server.properties```  
+```bash
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+```    
+```bash    
+bin/kafka-server-start.sh config/server.properties
+```  
 
 It is pointing to private server , change server.properties so that it can run in public IP 
 
@@ -58,16 +70,21 @@ Do a `sudo nano config/server.properties` - change ADVERTISED_LISTENERS to publi
 Create the topic:
 -----------------------------
 Duplicate the session & enter in a new console -  
-```cd kafka_2.12-3.3.1```    
-```bin/kafka-topics.sh --create --topic demo_test --bootstrap-server {Public IP of your EC2 Instance:9092} --replication-factor 1 --partitions 1```  
+  
+```bash
+bin/kafka-topics.sh --create --topic demo_test --bootstrap-server {Public IP of your EC2 Instance:9092} --replication-factor 1 --partitions 1
+```  
 
 Start Producer:
 --------------------------
-```bin/kafka-console-producer.sh --topic demo_test --bootstrap-server {Public IP of your EC2 Instance:9092}```   
+```bash
+bin/kafka-console-producer.sh --topic demo_test --bootstrap-server {Public IP of your EC2 Instance:9092}
+```   
 
 Start Consumer:
 -------------------------
 Duplicate the session & enter in a new console -
 
-```cd kafka_2.12-3.3.1```   
-```bin/kafka-console-consumer.sh --topic demo_test --bootstrap-server {Public IP of your EC2 Instance:9092}```  
+```bash
+bin/kafka-console-consumer.sh --topic demo_test --bootstrap-server {Public IP of your EC2 Instance:9092}
+```  
